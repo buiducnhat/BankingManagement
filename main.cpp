@@ -2,9 +2,84 @@
 #include <vector>
 #include <string>
 #include <cctype>
-#include "header.h"
 using namespace std;
 
+void drawline(int n, char symbol);
+int enter(int minRange, int maxRange, string warning);
+
+class account
+{
+private:
+    string name;
+    int id;
+    int money;
+
+public:
+    void inData(int id)
+    {
+        this->id = id;
+        getchar();
+        cout << "Enter your name: ";
+        getline(cin, this->name);
+        for (int i = 0; i < this->name.length(); i++)
+        {
+            this->name[i] = toupper(this->name[i]);
+        }
+        cout << "Enter your first balance: ";
+        cin >> money;
+    }
+    int getID()
+    {
+        return this->id;
+    }
+    void changeID()
+    {
+        this->id--;
+    }
+    int getBalance()
+    {
+        return this->money;
+    }
+    void outData()
+    {
+        printf("%-10d%-30s$%-15d\n", this->id, this->name.c_str(), this->money);
+    }
+    void readData(string s)
+    {
+        this->id = (int)(s[0] - '0');
+        for (int i = 10; i < 40; i++)
+        {
+            if (s[i] == ' ' && s[i + 1] == ' ')
+            {
+                this->name = s.substr(10, i - 10);
+                break;
+            }
+        }
+        this->money = stoi(s.substr(41, 15));
+    }
+    void writeData(FILE *dataFile)
+    {
+        fprintf(dataFile, "%-10d%-30s$%-15d\n", this->id, this->name.c_str(), this->money);
+    }
+    void modify()
+    {
+        getchar();
+        cout << "Enter new name: ";
+        getline(cin, this->name);
+        for (int i = 0; i < this->name.length(); i++)
+        {
+            this->name[i] = toupper(this->name[i]);
+        }
+    }
+    void deposit(int amount)
+    {
+        this->money += amount;
+    }
+    void withdraw(int amount)
+    {
+        this->money -= amount;
+    }
+};
 void drawline(int number, char symbol)
 {
     for (int i = 0; i < number; i++)
@@ -150,16 +225,13 @@ void exitProgram(vector<account> accounts)
 void getDataFromFile(vector<account> &accounts)
 {
     FILE *dataFile = fopen("account.dat", "r");
-    fseek(dataFile, 0, SEEK_END);
-    int size = ftell(dataFile);
-    fseek(dataFile, 0, SEEK_SET);
-    int count = 0; //var to check current postition of pointer of file
-    account temp;
-    while (count < size)
+    char temp[255];
+    account x;
+    while (fgets(temp, 255, dataFile) != NULL)
     {
-        temp.readData(dataFile, count - 1);
-        accounts.push_back(temp);
-        count += 58; // 58 is number of bytes per line in file!
+        string s = temp;
+        x.readData(s);
+        accounts.push_back(x);
     }
 }
 int main()
