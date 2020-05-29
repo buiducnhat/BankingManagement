@@ -16,6 +16,7 @@ Functions of this program:
 5. Close an account.
 6. Modify an account.
 7. Exit.
+and a function to get data from file.
 
 All data of all accounts is read and write with file "account.dat".
 
