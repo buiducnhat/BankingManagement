@@ -5,7 +5,6 @@ Requirements:
 - Basic OOP (class).
 - File I/O.
 - STL.
-- Header file (.h).
 - Basic algorithms and syntax (Decision Making, Loops, Function, Pointer,...).
 
 Functions of this program:
@@ -17,6 +16,8 @@ Functions of this program:
 6. Modify an account.
 7. Exit.
 and a function to get data from file.
+
+*This code works well with windows, on other OS, some command have to be changed: eg: system("cls") just work on Windows.
 
 All data of all accounts is read and write with file "account.dat".
 
