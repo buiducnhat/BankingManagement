@@ -6,6 +6,15 @@
 using namespace std;
 void drawline(int n, char symbol);
 int enter(int minRange, int maxRange, string warning);
+void menuDisplay();
+void newAccount(vector<account> &accounts);
+void depositAmount(vector<account> &accounts);
+void withdrawAmount(vector<account> &accounts);
+void accountList(vector<account> &accounts);
+void deleteAccount(vector<account> &accounts);
+void modifyAccount(vector<account> &accounts);
+void exitProgram(vector<account> accounts);
+void getDataFromFile(vector<account> &accounts);
 class account
 {
 private:
