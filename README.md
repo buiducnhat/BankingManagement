@@ -17,7 +17,7 @@ Functions of this program:
 7. Exit.
 and a function to get data from file.
 
-*This code works well with windows, on other OS, some command have to be changed: eg: system("cls") just work on Windows.
+*This code works well on windows, on other OS, some command need to be editted: eg: system("cls") just work on Windows.
 
 All data of all accounts is read and write with file "account.dat".
 
